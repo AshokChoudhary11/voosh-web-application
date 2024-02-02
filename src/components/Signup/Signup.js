@@ -43,37 +43,41 @@ const Signup = () => {
   };
 
   return (
-    <div className="signup-container">
-      <h2>Signup</h2>
-      <form>
-        <label htmlFor="name">Name:</label>
-        <input
-          type="text"
-          id="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-
-        <label htmlFor="phoneNumber">Phone Number:</label>
-        <input
-          type="text"
-          id="phoneNumber"
-          value={phoneNumber}
-          onChange={(e) => setPhoneNumber(e.target.value)}
-        />
-
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-
-        <button type="button" onClick={handleSignup}>
-          Signup
-        </button>
-      </form>
+    <div className  ="page">
+      <div className="container">
+        <h2>Signup</h2>
+        <form>
+          <label htmlFor="name">Name :</label>
+          <input
+            type="text"
+            id="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <label htmlFor="phoneNumber" required>
+            Phone Number :
+          </label>
+          <input
+            type="number"
+            id="phoneNumber"
+            value={phoneNumber}
+            required={true}
+            onChange={(e) => setPhoneNumber(e.target.value)}
+          />
+          <label htmlFor="password" required>
+            Password :
+          </label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button type="button" onClick={handleSignup}>
+            Signup
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

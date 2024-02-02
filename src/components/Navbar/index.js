@@ -8,12 +8,12 @@ const Navbar = () => {
   return (
     <nav>
       <ul>
-        <li>Voosh Application</li>
+        <li className="company_name" >Voosh Application</li>
         <span>
-          <li>
+          <li className="button" >
             <Link to="/login">Login</Link>
           </li>
-          <li>
+          <li className="button" >
             <Link to="/signup">Signup</Link>
           </li>
         </span>

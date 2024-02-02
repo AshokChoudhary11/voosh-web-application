@@ -1,8 +1,13 @@
 /* Navbar.css */
 
 nav {
-  background-color: #007bff;
+  background-color: #1f2b3e;
   padding: 10px;
+}
+.company_name{
+  color: #fff;
+  margin-left: 10px;
+  font-weight: 500;
 }
 
 ul {
@@ -10,7 +15,7 @@ ul {
   margin: 0;
   padding: 0;
   display: flex;
-  flex-direction:  row;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
 }
@@ -22,12 +27,20 @@ li {
 a {
   text-decoration: none;
   color: #fff;
-  font-weight: bold;
+  font-weight: 500;
 }
 
 a:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
-span{
-    display: flex;
+span {
+  display: flex;
+}
+.button {
+  padding: 10px 20px;
+  background-color: #0f1c2e;
+  border-radius: 30px;
+}
+.button:hover{
+  box-shadow: 0px 0px 30px rgba(0,0,0,0.3);
 }
