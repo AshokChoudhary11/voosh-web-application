@@ -1,12 +1,15 @@
 // Signup.js
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Signup.css";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [name, setName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState();
   const [password, setPassword] = useState("");
+  let navigate = useNavigate();
 
   const handleSignup = async () => {
     try {
@@ -16,34 +19,38 @@ const Signup = () => {
       // Create a new user object with the captured data
       const newUser = {
         name,
-        phoneNumber,
+        phone: phoneNumber,
         password: hashedPassword,
       };
 
       // Make a POST request to the server with the new user data
-      const response = await fetch("https://your-api-url/add-user", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newUser),
-      });
-
+      const response = await fetch(
+        `${process.env.REACT_APP_BASE_URL}/add-user`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newUser),
+        }
+      );
+      const responseBody = await response.json();
       // Check if the request was successful (status code 2xx)
-      if (response.ok) {
-        console.log("User registered successfully!");
+      if (!responseBody.error) {
+        toast.success("Logged in successfully");
+        return navigate("/login");
         // You can redirect the user to the login page or perform any other actions
       } else {
-        console.error("Error registering user:", response.statusText);
+        toast.error(responseBody.error);
         // Handle the error appropriately (display a message to the user, etc.)
       }
     } catch (error) {
-      console.error("Error:", error);
+      toast.error("Logged in Failed");
     }
   };
 
   return (
-    <div className  ="page">
+    <div className="page">
       <div className="container">
         <h2>Signup</h2>
         <form>
@@ -62,9 +69,9 @@ const Signup = () => {
             id="phoneNumber"
             value={phoneNumber}
             required={true}
-            onChange={(e) => setPhoneNumber(e.target.value)}
+            onChange={(e) => setPhoneNumber(parseInt(e.target.value))}
           />
-          <label htmlFor="password" required>
+          <label htmlFor="password" re quired>
             Password :
           </label>
           <input

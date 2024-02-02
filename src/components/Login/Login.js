@@ -1,30 +1,47 @@
 // LoginForm.js
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./Login.css";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { BASE_URL } from "../../contants";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../context";
 
 const Login = () => {
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState();
   const [password, setPassword] = useState("");
+  let navigate = useNavigate();
+  const { setToken } = useContext(UserContext);
 
   const handleLogin = () => {
     // Implement your login logic here
     console.log("Logging in with:", { phoneNumber, password });
-    fetch(`${BASE_URL}/login-user`, {
+    const hashedPassword = btoa(password);
+    fetch(`${process.env.REACT_APP_BASE_URL}/login-user`, {
       method: "POST",
       body: JSON.stringify({
         phone: phoneNumber,
-        password,
+        password: hashedPassword,
       }),
       headers: {
         "Content-Type": "application/json; charset=utf-8",
       },
-    }).then((res) => {
-      console.log({ res });
-    });
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        if (res.error) {
+          toast.error(res.error);
+        } else {
+          localStorage.setItem("auth-token", res.token);
+          setToken(res.token);
+          navigate("/order");
+        }
+      })
+      .catch((err) => {
+        toast.error("Failed to login");
+      });
   };
 
   return (
@@ -37,7 +54,7 @@ const Login = () => {
             type="number"
             id="Phone Number"
             value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
+            onChange={(e) => setPhoneNumber(parseInt(e.target.value))}
           />
           <label htmlFor="password">Password:</label>
           <input

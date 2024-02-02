@@ -1,0 +1,42 @@
+.order-container {
+  display: flex;
+  width: 90%;
+  margin: auto;
+  max-width: 1080px;
+  color: #fff;
+  padding: 10px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.order-button-container {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}
+
+.order-list-container {
+  width: 100%;
+  margin-top: 10px;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.order {
+  display: flex;
+  width: 100%;
+  border: 1px solid white;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-radius: 8px;
+  flex-direction: column;
+}
+
+.order > div {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
