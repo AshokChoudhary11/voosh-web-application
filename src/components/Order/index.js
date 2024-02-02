@@ -72,7 +72,7 @@ export const Order = () => {
             error: res.error,
           });
         } else {
-          setNewOrder({ sub_total: 0, phone_number: 0 });
+          setNewOrder({ sub_total: "", phone_number: "" });
           setShowNewOrderForm(false);
           loadOrders();
         }
