@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Login from "./components/Login/Login";
 import Signup from "./components/Signup/Signup";
 import Navbar from "./components/Navbar";
@@ -38,6 +38,7 @@ const App = () => {
             </ProtectedRoutes>
           }
         />
+        <Route path="/" element={<Navigate to="/order" />} />
       </Routes>
       <ToastContainer position="bottom-right" />
     </UserContext.Provider>
