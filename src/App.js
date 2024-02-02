@@ -38,7 +38,7 @@ const App = () => {
             </ProtectedRoutes>
           }
         />
-        <Route path="/" element={<Navigate to="/order" />} />
+        <Route path="/" element={<Navigate to="/login" />} />
       </Routes>
       <ToastContainer position="bottom-right" />
     </UserContext.Provider>
