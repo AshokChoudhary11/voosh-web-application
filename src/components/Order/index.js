@@ -107,11 +107,12 @@ export const Order = () => {
             <div className="container" onClick={(e) => e.stopPropagation()}>
               <h2>New Order</h2>
               <form>
-                <label htmlFor="Phone Number">Sub Total:</label>
+                <label htmlFor="sub total">Sub Total:</label>
                 <input
                   type="number"
                   id="Sub Total"
-                  value={newOrder.sub_total || 0}
+                  value={newOrder?.sub_total}
+                  placeholder="please enter sub total amount"
                   onChange={(e) =>
                     setNewOrder({
                       ...newOrder,
@@ -123,7 +124,8 @@ export const Order = () => {
                 <input
                   type="number"
                   id="phone_number"
-                  value={newOrder.phone || 0}
+                  value={newOrder.phone}
+                  placeholder="please enter your phone number"
                   onChange={(e) =>
                     setNewOrder({
                       ...newOrder,

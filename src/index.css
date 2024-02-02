@@ -33,6 +33,10 @@ input {
   border-radius: 8px;
   color: #fff;
 }
+::placeholder {
+  color: #acc2ef;
+  font-weight: lighter;
+}
 .container {
   width: 300px;
   margin: auto;
